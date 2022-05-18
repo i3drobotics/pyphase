@@ -20,7 +20,6 @@ RUN apt update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Phase
-RUN curl --output phase.tar.gz -L https://github.com/i3drobotics/phase/releases/download/v0.0.26/phase-v0.0.26-ubuntu-20.04-x86_64.tar.gz && \
-    mkdir phase_install && \
-    tar -xf phase.tar.gz -C phase_install && \
-    rm ./phase.tar.gz
+RUN curl --output phase.deb -L https://github.com/i3drobotics/phase/releases/download/v0.0.26/phase-v0.0.26-ubuntu-20.04-x86_64.deb && \
+    apt install -f ./phase.deb && \
+    rm ./phase.deb

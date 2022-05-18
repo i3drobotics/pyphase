@@ -1,5 +1,5 @@
 {
-	"name": "Python 3",
+	"name": "Build",
 	"build": {
 		"dockerfile": "Dockerfile",
 		"context": "..",
