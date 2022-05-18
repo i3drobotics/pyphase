@@ -2,10 +2,12 @@
 ARG VARIANT=3
 FROM mcr.microsoft.com/vscode/devcontainers/python:${VARIANT}
 
+# Install pip requirements
 COPY requirements.txt /tmp/pip-tmp/
-RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
-   && rm -rf /tmp/pip-tmp
+RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt && \
+    rm -rf /tmp/pip-tmp
 
+# Install packages
 RUN apt update && \
     export DEBIAN_FRONTEND=noninteractive && \
     apt install -y \
@@ -17,7 +19,8 @@ RUN apt update && \
     && \
     rm -rf /var/lib/apt/lists/*
 
-RUN curl --output phase.tar.gz -L https://github.com/i3drobotics/phase/releases/download/v0.0.26/phase-v0.0.26-ubuntu-20.04-x86_64.tar.gz \
-    mkdir phase_install \
-    tar -xf phase.tar.gz -C phase_install \
+# Install Phase
+RUN curl --output phase.tar.gz -L https://github.com/i3drobotics/phase/releases/download/v0.0.26/phase-v0.0.26-ubuntu-20.04-x86_64.tar.gz && \
+    mkdir phase_install && \
+    tar -xf phase.tar.gz -C phase_install && \
     rm ./phase.tar.gz
