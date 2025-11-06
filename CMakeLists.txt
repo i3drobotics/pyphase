@@ -35,7 +35,7 @@ string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
 
 # create configure file (for version number as defines)
 configure_file(
-    src/bindings/cmake/pyphase_version_bindings.cpp.in
+    src/bindings/cmake/pyphase_version_bindings.cpp.inzxxz
     ${CMAKE_CURRENT_SOURCE_DIR}/src/bindings/pyphase_version_bindings.cpp @ONLY
 )
 
@@ -76,7 +76,7 @@ include(FetchContent)
 FetchContent_Declare(
     pybind11
     GIT_REPOSITORY https://github.com/pybind/pybind11
-    GIT_TAG        v2.9.1
+    GIT_TAG        v3.0.1
     GIT_SHALLOW    ON
 )
 
@@ -86,7 +86,12 @@ if(NOT pybind11_POPULATED)
     add_subdirectory(${pybind11_SOURCE_DIR} ${pybind11_BINARY_DIR})
 endif()
 # find numpy location
-execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import numpy; print(numpy.get_include())" OUTPUT_VARIABLE NUMPY_INCLUDE OUTPUT_STRIP_TRAILING_WHITESPACE)
+find_package(Python3)
+#message(STATUS "Python Executable = ${PYTHON_EXECUTABLE}")
+message(STATUS "Python Executable = ${Python3_EXECUTABLE}")
+message(STATUS "Python install dir = ${PYTHON_MODULE_INSTALL_DIR}")
+#execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import numpy; print(numpy.get_include())" OUTPUT_VARIABLE NUMPY_INCLUDE OUTPUT_STRIP_TRAILING_WHITESPACE)
+execute_process(COMMAND ${Python3_EXECUTABLE} -c "import numpy; print(numpy.get_include())" OUTPUT_VARIABLE NUMPY_INCLUDE OUTPUT_STRIP_TRAILING_WHITESPACE)
 message(STATUS "NUMPY_INCLUDE: " ${NUMPY_INCLUDE})
 if ("${NUMPY_INCLUDE}" STREQUAL "")
     message(FATAL_ERROR "\nFailed to find required python package numpy.\nInstall using `pip install numpy`.")
