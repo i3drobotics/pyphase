@@ -12,3 +12,4 @@ test/src/.phase_test
 deployment
 *.log
 src/bindings/pyphase_version_bindings.cpp
+.venv

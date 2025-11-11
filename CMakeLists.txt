@@ -35,7 +35,7 @@ string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
 
 # create configure file (for version number as defines)
 configure_file(
-    src/bindings/cmake/pyphase_version_bindings.cpp.inzxxz
+    src/bindings/cmake/pyphase_version_bindings.cpp.in
     ${CMAKE_CURRENT_SOURCE_DIR}/src/bindings/pyphase_version_bindings.cpp @ONLY
 )
 
@@ -86,7 +86,7 @@ if(NOT pybind11_POPULATED)
     add_subdirectory(${pybind11_SOURCE_DIR} ${pybind11_BINARY_DIR})
 endif()
 # find numpy location
-find_package(Python3)
+#find_package(Python3)
 #message(STATUS "Python Executable = ${PYTHON_EXECUTABLE}")
 message(STATUS "Python Executable = ${Python3_EXECUTABLE}")
 message(STATUS "Python install dir = ${PYTHON_MODULE_INSTALL_DIR}")

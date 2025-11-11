@@ -74,6 +74,14 @@ make -j$(nproc)
 ```
 *Note: Make sure to run this from the repository root directory*  
 
+### Specifying the Python Interpreter (Optional)
+Optionally, to build the pyPhase bindings with a specific Python interpreter:
+- Comment out the line `find_package(Python3)` in [CMakeLists.txt](CMakeLists.txt)
+- In the above cmake command specify the location of your chosen Python interpreter by adding `-DPython3_EXECUTABLE=path/to/your/intepreter`, e.g.:
+```
+cmake -DPhase_DIR="/opt/i3dr/phase/lib/cmake" -DPython3_EXECUTABLE=../.venv/bin/python3 ..
+```
+
 ## Test
 ### Unit tests
 Run unit tests using pytest by running the following commands:

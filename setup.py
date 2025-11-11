@@ -51,6 +51,9 @@ def gen_stubs():
         raise Exception("Failed to find pybind11-stubgen")
     stubgen_cmd = 'pybind11-stubgen phase.pyphase -o "' + python_path + \
                   '" --ignore-invalid all --no-setup-py'
+    # NOTE: we will need to update syntax if switching to new version of pybind11-stubgen
+    # stubgen_cmd = 'pybind11-stubgen phase.pyphase -o "' + python_path + '" --ignore-invalid-expression "std|Pylon"'
+    # print(f"Executing Pybind stubgen command:\n{stubgen_cmd}")
     exit_code = os.system(stubgen_cmd)
     if exit_code != 0:
         raise Exception("Failed to generate stubs")

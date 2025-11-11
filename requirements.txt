@@ -6,5 +6,5 @@ wheel
 twine
 flake8
 pytest
-pybind11-stubgen
+pybind11-stubgen==0.8.2
 numpydoc
